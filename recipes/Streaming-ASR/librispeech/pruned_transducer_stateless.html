@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pruned transducer statelessX &mdash; icefall 0.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,7 +46,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../for-dummies/index.html">Icefall for dummies tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docker/index.html">Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">Frequently Asked Questions (FAQs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../model-export/index.html">Model export</a></li>
 </ul>
@@ -61,12 +65,17 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../RNN-LM/index.html">RNN-LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TTS/index.html">TTS</a></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../huggingface/index.html">Huggingface</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../decoding-with-langugage-models/index.html">Decoding with language models</a></li>
 </ul>
 
         </div>
@@ -400,10 +409,10 @@ $<span class="w"> </span>tensorboard<span class="w"> </span>dev<span class="w"> 
 <p>Note there is a URL in the above output. Click it and you will see
 the following screenshot:</p>
 <blockquote>
-<div><figure class="align-center" id="id10">
+<div><figure class="align-center" id="id6">
 <a class="reference external image-reference" href="https://tensorboard.dev/experiment/97VKXf80Ru61CnP2ALWZZg/"><img alt="TensorBoard screenshot" src="../../../_images/streaming-librispeech-pruned-transducer-tensorboard-log.jpg" style="width: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">TensorBoard screenshot.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">TensorBoard screenshot.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </div></blockquote>
@@ -646,7 +655,7 @@ can try decoding with <code class="docutils literal notranslate"><span class="pr
 of each frame as the decoding result.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">beam_search</span></code> :  It implements Algorithm 1 in <a class="reference external" href="https://arxiv.org/pdf/1211.3711.pdf">https://arxiv.org/pdf/1211.3711.pdf</a> and
 <a class="reference external" href="https://github.com/espnet/espnet/blob/master/espnet/nets/beam_search_transducer.py#L247">espnet/nets/beam_search_transducer.py</a>
-is used as a reference. Basicly, it keeps topk states for each frame, and expands the kept states with their own contexts to
+is used as a reference. Basically, it keeps topk states for each frame, and expands the kept states with their own contexts to
 next frame.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">modified_beam_search</span></code> : It implements the same algorithm as <code class="docutils literal notranslate"><span class="pre">beam_search</span></code> above, but it
 runs in batch mode with <code class="docutils literal notranslate"><span class="pre">--max-sym-per-frame=1</span></code> being hardcoded.</p></li>
@@ -720,7 +729,7 @@ command to extract <code class="docutils literal notranslate"><span class="pre">
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><code class="docutils literal notranslate"><span class="pre">--streaming-model</span></code> and <code class="docutils literal notranslate"><span class="pre">--causal-convolution</span></code> require to be True to export
-a streaming mdoel.</p>
+a streaming model.</p>
 </div>
 <p>It will generate a file <code class="docutils literal notranslate"><span class="pre">./pruned_transducer_stateless4/exp/pretrained.pt</span></code>.</p>
 <div class="admonition hint">
@@ -762,7 +771,7 @@ can run:</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><code class="docutils literal notranslate"><span class="pre">--streaming-model</span></code> and <code class="docutils literal notranslate"><span class="pre">--causal-convolution</span></code> require to be True to export
-a streaming mdoel.</p>
+a streaming model.</p>
 </div>
 <p>It will generate a file <code class="docutils literal notranslate"><span class="pre">cpu_jit.pt</span></code> in the given <code class="docutils literal notranslate"><span class="pre">exp_dir</span></code>. You can later
 load it by <code class="docutils literal notranslate"><span class="pre">torch.jit.load(&quot;cpu_jit.pt&quot;)</span></code>.</p>
