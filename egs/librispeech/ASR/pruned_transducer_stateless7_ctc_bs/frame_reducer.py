@@ -79,9 +79,11 @@ class FrameReducer(nn.Module):
             limit_lens = x_lens - y_lens
             max_limit_len = limit_lens.max().int()
             ctc_prob = ctc_output.exp()
+            ctc_prob = ctc_prob.masked_fill(
+                padding_mask.unsqueeze(-1), 0.0,
+            )
             fake_limit_indexes = torch.topk(
-                ctc_prob[:, :, blank_id].masked_fill(padding_mask, 0.0), 
-                k=max_limit_len,
+                ctc_prob[:, :, blank_id], max_limit_len
             ).indices
             T_arange = (
                 torch.arange(max_limit_len)
